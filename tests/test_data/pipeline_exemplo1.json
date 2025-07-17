@@ -1,0 +1,44 @@
+{
+  "name": "PipelineRelatorioVendas",
+  "properties": {
+    "activities": [
+      {
+        "name": "CopiarVendasBrutas",
+        "type": "Copy",
+        "inputs": [
+          { "name": "Origem_Vendas_CSV" }
+        ],
+        "outputs": [
+          { "name": "Bronze_Vendas" }
+        ]
+      },
+      {
+        "name": "JuntarComClientes",
+        "type": "DataFlow",
+        "dependsOn": [
+          { "activity": "CopiarVendasBrutas" }
+        ],
+        "inputs": [
+          { "name": "Bronze_Vendas" },
+          { "name": "Origem_Clientes_SQL" }
+        ],
+        "outputs": [
+          { "name": "Silver_Vendas_Enriquecidas" }
+        ]
+      },
+      {
+        "name": "AgregarVendasPorRegiao",
+        "type": "DataFlow",
+        "dependsOn": [
+          { "activity": "JuntarComClientes" }
+        ],
+        "inputs": [
+          { "name": "Silver_Vendas_Enriquecidas" }
+        ],
+        "outputs": [
+          { "name": "Gold_Relatorio_Vendas_Regiao" }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+# Ignorar ambiente virtual
+.venv/
+venv/
+
+# Ignorar arquivo de segredos
+.env
+
+# Ignorar caches do Python
+__pycache__/
+*.pyc
+
+# Arquivos gerados
+*.png
