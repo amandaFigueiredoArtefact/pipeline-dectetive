@@ -11,3 +11,6 @@ __pycache__/
 
 # Arquivos gerados
 *.png
+
+#credenciais GCP
+gcp-credentials.json

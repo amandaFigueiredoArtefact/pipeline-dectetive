@@ -3,3 +3,5 @@ google-generativeai
 python-dotenv
 graphviz
 Pillow
+google-cloud-vision
+openai

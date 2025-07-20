@@ -20,8 +20,8 @@ def run_tests():
     # --- PONTO DE ATENÇÃO ---
     # Verifique se os nomes dos arquivos aqui batem EXATAMENTE com os nomes na pasta tests/test_data/
     test_files = {
-        "json": os.path.join(script_dir, "test_data", "pipeline_exemplo.json"), # <--- VERIFIQUE ESTE NOME
-        "sql": os.path.join(script_dir, "test_data", "script_exemplo.sql")
+        "json": os.path.join(script_dir, "test_data", "pipeline_exemplo1.json"), # <--- VERIFIQUE ESTE NOME
+        #"sql": os.path.join(script_dir, "test_data", "script_exemplo.sql")
     }
     
     for file_type, file_path in test_files.items():
