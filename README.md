@@ -10,7 +10,7 @@ O fluxo de dados começa na interface do usuário, passa por uma camada de orque
 
 O diagrama abaixo ilustra os principais componentes da solução e como eles interagem entre si.
 
-![Diagrama da Arquitetura da Solução Data Holmes](https://i.imgur.com/g8oYkQ1.png)
+<img width="1215" height="272" alt="image" src="https://github.com/user-attachments/assets/2e157c7e-61ac-445b-ad4a-e46ceb43097a" />
 
 ## 3. Descrição dos Componentes
 
