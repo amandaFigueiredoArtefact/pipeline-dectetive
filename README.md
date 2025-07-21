@@ -44,7 +44,7 @@ O backend é composto por módulos Python distintos, cada um com uma responsabil
 * **API de OCR (Google Cloud Vision):** Serviço externo utilizado para "ler" o texto de ficheiros de imagem.
 * **Graphviz:** Biblioteca open-source fundamental que é utilizada pelo `visualizer.py` para renderizar os gráficos e diagramas de forma programática.
 
-## 1. Comandos para Executar a Aplicação
+## 4. Comandos para Executar a Aplicação
 
 Para configurar o ambiente e rodar o projeto, siga os passos abaixo.
 
