@@ -16,7 +16,7 @@ O diagrama abaixo ilustra os principais componentes da solução e como eles int
 
 A solução é dividida nas seguintes camadas e componentes lógicos:
 
-#### a. Frontend (Interface do Usuário - app.py)
+#### a. Frontend (Interface do Usuário - **`app.py`**)
 
 * **Tecnologia:** Streamlit
 * **Responsabilidade:** É a única camada com a qual o usuário interage diretamente. É responsável por:
