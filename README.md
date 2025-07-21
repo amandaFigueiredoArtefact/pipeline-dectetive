@@ -46,5 +46,5 @@ O backend é composto por módulos Python distintos, cada um com uma responsabil
 
 ## 1. Testar aplicação
 
-* **Para rodar a aplicação execute : `streamlit run app.py` , se esse nao funcionar tente com `python -m streamlit run app.py`):**
+* **Para rodar a aplicação execute : `streamlit run app.py` , se esse nao funcionar tente com `python -m streamlit run app.py`.**
   
