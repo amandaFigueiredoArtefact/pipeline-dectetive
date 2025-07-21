@@ -1,4 +1,5 @@
 import streamlit as st
+import os # Importamos a biblioteca 'os' para trabalhar com nomes de ficheiros
 from backend.lineage_creator import generate_from_content
 
 # --- Configuração da Página ---
@@ -9,8 +10,6 @@ st.set_page_config(
 )
 
 # --- Inicialização do Session State ---
-# Usamos a "memória" do Streamlit para guardar o resultado da análise.
-# Isso é crucial para evitar o loop de reprocessamento.
 if 'generated_image_path' not in st.session_state:
     st.session_state.generated_image_path = None
 
@@ -20,16 +19,13 @@ st.write("Analise a linhagem de dados de pipelines a partir de arquivos, imagens
 st.divider()
 
 # --- Lógica de Callbacks ---
-# Função que será chamada quando o botão principal for clicado
 def run_analysis(content, file_type, ai_provider):
-    # Mostra o spinner durante o processamento
     spinner_message = f"Analisando texto com {ai_provider}..."
     if file_type in ['png', 'jpg', 'jpeg']:
         spinner_message = f"Analisando imagem com {ai_provider}... O OCR pode demorar um pouco."
 
     with st.spinner(spinner_message):
         try:
-            # Chama o backend e armazena o resultado no session_state
             st.session_state.generated_image_path = generate_from_content(
                 content_bytes=content, 
                 file_type=file_type, 
@@ -37,11 +33,7 @@ def run_analysis(content, file_type, ai_provider):
             )
         except Exception as e:
             st.error(f"Ocorreu um erro crítico durante o processamento: {e}")
-            st.session_state.generated_image_path = None # Limpa em caso de erro
-
-# Função para limpar o resultado e começar de novo
-def clear_analysis():
-    st.session_state.generated_image_path = None
+            st.session_state.generated_image_path = None
 
 
 # --- PARTE 1: COLETANDO OS INPUTS DO USUÁRIO ---
@@ -64,8 +56,12 @@ with tab1:
         label_visibility="collapsed"
     )
     if uploaded_file:
-        file_type = uploaded_file.type.split('/')[1]
+        # --- LÓGICA DE DETECÇÃO DE TIPO CORRIGIDA ---
+        # Usamos a extensão do nome do ficheiro, que é mais fiável.
+        file_extension = os.path.splitext(uploaded_file.name)[1].lower().replace('.', '')
+        file_type = file_extension
         content_to_pass = uploaded_file.getvalue()
+        st.info(f"Arquivo '{uploaded_file.name}' pronto para análise (tipo detectado: {file_type}).")
 
 with tab2:
     text_input = st.text_area(
@@ -89,20 +85,14 @@ st.divider()
 col1, col2 = st.columns(2)
 
 with col1:
-    # O botão agora chama a função de análise através do on_click
     if st.button("Gerar Linhagem de Dados ✨", use_container_width=True, type="primary"):
         if content_to_pass:
             run_analysis(content_to_pass, file_type, selected_ai)
         else:
             st.warning("Por favor, envie um arquivo ou cole um conteúdo de texto.")
 
-with col2:
-    # Botão para limpar o resultado e a tela
-    st.button("Limpar Análise", on_click=clear_analysis, use_container_width=True)
-
 
 # --- PARTE 3: EXIBIÇÃO DO RESULTADO ---
-# Este bloco agora está fora da lógica do botão. Ele apenas exibe o que está na "memória".
 if st.session_state.generated_image_path:
     st.success("Linhagem de dados gerada com sucesso!")
     st.image(st.session_state.generated_image_path, caption=f"Diagrama gerado por {selected_ai}")
@@ -115,5 +105,4 @@ if st.session_state.generated_image_path:
             mime="image/png"
         )
 elif st.session_state.generated_image_path is None and 'button' in st.session_state and st.session_state.button:
-    # Caso especial: se o botão foi clicado mas o backend falhou e retornou None
     st.error("Ocorreu uma falha no backend. A IA não conseguiu processar o conteúdo. Verifique o terminal para mais detalhes.")

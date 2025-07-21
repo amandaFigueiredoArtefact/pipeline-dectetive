@@ -1,5 +1,3 @@
-# backend/visualizer.py
-
 import graphviz
 
 def generate_lineage_image(data: dict, output_filename: str = "lineage_diagram") -> str:
