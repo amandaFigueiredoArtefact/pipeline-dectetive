@@ -43,3 +43,8 @@ O backend é composto por módulos Python distintos, cada um com uma responsabil
 * **APIs de IA (Google Gemini & OpenAI ChatGPT):** São os serviços externos que fornecem a inteligência para interpretar o conteúdo dos ficheiros e extrair a estrutura de dados.
 * **API de OCR (Google Cloud Vision):** Serviço externo utilizado para "ler" o texto de ficheiros de imagem.
 * **Graphviz:** Biblioteca open-source fundamental que é utilizada pelo `visualizer.py` para renderizar os gráficos e diagramas de forma programática.
+
+## 1. Testar aplicação
+
+* **Para rodar a aplicação execute : `streamlit run app.py` , se esse nao funcionar tente com `python -m streamlit run app.py`):**
+  
