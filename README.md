@@ -44,7 +44,30 @@ O backend é composto por módulos Python distintos, cada um com uma responsabil
 * **API de OCR (Google Cloud Vision):** Serviço externo utilizado para "ler" o texto de ficheiros de imagem.
 * **Graphviz:** Biblioteca open-source fundamental que é utilizada pelo `visualizer.py` para renderizar os gráficos e diagramas de forma programática.
 
-## 1. Testar aplicação
+## 1. Comandos para Executar a Aplicação
 
-* **Para rodar a aplicação execute : `streamlit run app.py` , se esse nao funcionar tente com `python -m streamlit run app.py`.**
+Para configurar o ambiente e rodar o projeto, siga os passos abaixo.
+
+* **Passo 1: Instalar as Dependências**
+    * Primeiro, instale as bibliotecas Python necessárias executando o seguinte comando no seu terminal:
+        ```bash
+        pip install -r requirements.txt
+        ```
+    * Em seguida, instale a dependência de sistema Graphviz. Para ambientes baseados em Debian/Ubuntu (como o Codespaces), use:
+        ```bash
+        sudo apt-get update && sudo apt-get install -y graphviz
+        ```
+
+* **Passo 2: Configurar as Chaves de API**
+    * Certifique-se de que os ficheiros `.env` (com as chaves do Gemini e OpenAI) e `gcp-credentials.json` (com as credenciais do Google Cloud Vision) estão na pasta raiz do projeto.
+
+* **Passo 3: Rodar a Aplicação**
+    * Com as dependências instaladas e as chaves configuradas, execute o seguinte comando no terminal:
+        ```bash
+        streamlit run app.py
+        ```
+    * Se o comando acima não for encontrado, utilize a alternativa mais robusta:
+        ```bash
+        python -m streamlit run app.py
+        ```
   
